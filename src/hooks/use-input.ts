@@ -1,5 +1,10 @@
 import { Action } from "../shared/models/action.interface";
-import { InputActionType } from "./models/InputAction";
+import {
+  INPUT_ACTION_BLUR,
+  INPUT_ACTION_CHANGE,
+  INPUT_ACTION_CLEAR,
+  InputActionType,
+} from "./models/InputAction";
 import { InputState } from "./models/InputState.interface";
 
 const initialInputState: InputState = {
@@ -7,4 +12,18 @@ const initialInputState: InputState = {
   hasBeenTouched: false,
 };
 
-const inputReducer = (state: InputState, action: Action<InputActionType>) => {};
+const inputReducer = (state: InputState, action: Action<InputActionType>) => {
+  const { type, value = "" } = action;
+
+  switch (type) {
+    case INPUT_ACTION_CHANGE:
+      return { text: value, hasBeenTouched: state.hasBeenTouched };
+    case INPUT_ACTION_BLUR:
+      return { text: state.text, hasBeenTouched: true };
+    case INPUT_ACTION_CLEAR:
+      return { text: "", hasBeenTouched: false };
+
+    default:
+      return { ...state };
+  }
+};
