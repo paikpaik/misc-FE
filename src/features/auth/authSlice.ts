@@ -3,6 +3,7 @@ import { DisplayUser } from "./models/DisplayUser.interface";
 import { Jwt } from "./models/jwt";
 import { NewUser } from "./models/NewUser";
 import authService from "./services/auth.service";
+import { RootState } from "../../store";
 
 // TODO: move higher
 interface AsyncState {
@@ -40,7 +41,13 @@ export const register = createAsyncThunk(
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // REGISTER
@@ -59,5 +66,11 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export const { reset } = authSlice.actions;
+
+export const selectedUser = (state: RootState) => {
+  return state.auth;
+};
 
 export default authSlice.reducer;
