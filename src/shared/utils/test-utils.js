@@ -1,8 +1,8 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { render as rtlRender } from "@testing-library/react";
 import { Provider } from "react-redux";
 import authReducer from "../../features/auth/authSlice.ts";
-import { BrowserRouter as Router } from "react-router-dom";
 
 function reducer(
   ui,
