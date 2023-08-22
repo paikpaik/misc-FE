@@ -175,6 +175,7 @@ const SigninFormComponent: FC = () => {
           <small style={{ color: "#767676" }}>New to MISC?</small>
         </Divider>
         <Link
+          id="register-link"
           to="/register"
           style={{ textDecoration: "none", color: "#0000ee" }}
         >
