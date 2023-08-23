@@ -37,5 +37,33 @@ describe("Auth (e2e)", () => {
     cy.get("#email").click().type(email);
     cy.get("#password").click().type(password);
     cy.get("#confirmPassword").click().type(password);
+
+    cy.get("#register-btn").click();
+
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait(500);
+
+    cy.url().should("include", "signin");
+  });
+
+  it("Sign-in button should be disabled", () => {
+    cy.contains("#signin-btn", "Sign-In").should("have.attr", "disabled");
+  });
+
+  it("Correct details should enable Sign-in button", () => {
+    cy.get("#email").click().type(email);
+    cy.get("#password").click().type(password);
+
+    cy.contains("#signin-btn", "Sign-In").should("not.have.attr", "disabled");
+  });
+
+  it("should navigate to home page", () => {
+    cy.contains("#signin-btn", "Sign-In").click();
+
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait(500);
+
+    cy.url().should("not.include", "signin");
+    cy.url().should("include", "/");
   });
 });

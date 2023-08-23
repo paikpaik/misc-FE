@@ -133,6 +133,7 @@ const SigninFormComponent: FC = () => {
             />
 
             <Button
+              id="signin-btn"
               disabled={
                 !validatePasswordLength(password) || !validateEmail(email)
               }
