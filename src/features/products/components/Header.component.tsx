@@ -51,7 +51,7 @@ const HeaderComponent = () => {
                 Sign out
               </Button>
             </div>
-            <Button>
+            <Button onClick={() => navigate("/cart")}>
               <Badge badgeContent={cartCount} color="primary">
                 <ShoppingCartOutlinedIcon fontSize="large" />
               </Badge>
